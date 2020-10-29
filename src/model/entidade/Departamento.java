@@ -26,6 +26,12 @@ public class Departamento implements Serializable {
 		return id;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

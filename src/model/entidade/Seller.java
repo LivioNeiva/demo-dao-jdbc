@@ -23,7 +23,7 @@ public class Seller implements Serializable {
 		this.id=id;
 		this.nome=nome;
 		this.email=email;
-		this.birthDate=birthDate;
+		this.birthDate=birthDate;//data de nascimento
 		this.salario=salario;
 		this.departamento=departamento;
 	}
@@ -51,7 +51,12 @@ public class Seller implements Serializable {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-	
+	public Double getSalario() {
+		return salario;
+	}
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
 	public Departamento getDepartamento() {
 		return departamento;
 	}

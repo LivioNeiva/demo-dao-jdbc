@@ -9,6 +9,6 @@ public interface SellerDao {
 	void insert(Seller obj);
 	void update(Seller obj);
 	void deleteById(Integer id);
-	Seller findById();
-	List<Seller> findAll();			
+	Seller findById(Integer id);//encontrar por id
+	List<Seller> findAll();//encontrar tudo			
 }
