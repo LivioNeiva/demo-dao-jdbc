@@ -20,7 +20,7 @@ public class DB {
 		
 		try {//se conn estiver null faça
 			if(conn == null) {//codigo abaixo faz a conexao com banco de dados
-				Properties props = loadProperties();//adicionar as ropriedades de conexação ao obj de proriedade
+				Properties props = loadProperties();//adicionar as propriedades de conexação ao obj de proriedade
 				String url = props.getProperty("dburl");//o obj props pega o valor(propriedade) dbur1 esta arquivo db.properties
 				conn = DriverManager.getConnection(url, props);//obter uma conexão com banco de dados
 			}
