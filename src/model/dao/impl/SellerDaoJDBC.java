@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +23,45 @@ public class SellerDaoJDBC implements SellerDao {
 	public SellerDaoJDBC(Connection conn) {
 		this.conn=conn;
 	}
-
+	//insere registro no banco de dados
 	@Override
 	public void insert(Seller obj) {
-		
+		PreparedStatement st = null;
+		//ResultSet rs = null;
+		try {
+			st = conn.prepareStatement("insert into seller "
+					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
+					+ "values "
+					+ "(?, ?, ?, ?, ?) ",
+					Statement.RETURN_GENERATED_KEYS);//retorna o id do novo vendedor inserido
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getEmail());
+			st.setDate(3, new java.sql.Date(obj.getBirthDate().getTime())); //obj.setBirthDate(rs.getDate("BirthDate"));//extraindo campo data do obj ResultSet no qual se encontra o resultado da consulta sql
+			st.setDouble(4, obj.getSalario());
+			st.setInt(5, obj.getDepartamento().getId());
+			
+			int numLinhas = st.executeUpdate();
+			
+			if(numLinhas > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if(rs.next()) {
+					//vamos pegar o valor do id que está na posição 1 do ResultSet
+					int id = rs.getInt(1);//a posição 1 é a primeira coluna dessa chave st.getGeneratedKeys()
+					obj.setId(id);
+				}
+				DB.closeResultSet(rs);
+			}else {
+				throw new DbException("ERRO INESPERADO || NENHUMA LINHA FOI AFETADA");
+			}
+			
+			
+			
+		}catch(SQLException ex) {
+			throw new DbException(ex.getMessage());
+		}finally {
+			DB.closeStatment(st);
+			//DB.closeResultSet(rs);
+		}
 	}
 	
 	@Override
@@ -69,6 +105,7 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 		return null;
 	}
+	//lista todos os registos
 	@Override
 	public List<Seller> findAll(){
 		

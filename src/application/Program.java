@@ -39,7 +39,7 @@ public class Program {
 		for(Seller vendedor : list) {
 			System.out.println(vendedor);
 		}
-		
+		/*
 		System.out.println("\n === TESTANDO 3 SELLER findAll ===");
 		
 		List<Seller> seller2 = sellerDao.findAll();
@@ -47,6 +47,27 @@ public class Program {
 		for(Seller vend : seller2) {
 			System.out.println(vend);
 		}
+		*/
+		
+		Departamento d = new Departamento(12,null);
+		/*
+		System.out.println("\n === TESTANDO 4 SELLER INSERT ===");
+		Seller seller3 = new Seller();
+		seller3.setNome("Durvalina Medeiros");
+		seller3.setEmail("dm@hotmail.com");
+		seller3.setBirthDate(new Date());
+		seller3.setSalario(2000.0);
+		seller3.setDepartamento(d);
+		
+		sellerDao.insert(seller3);
+		System.out.println("NOVO ID INSERIDO: "+seller3.getId());
+		*/
+		
+		//outro modelo de instanciar obj para inserir as informações
+		
+		Seller newSeller = new Seller(null,"Rodolfo maia", "maia@ig.com.br", new Date(), 8000.0, d );
+		sellerDao.insert(newSeller);
+		System.out.println("NOVO ID INSERIDO: "+newSeller.getId());
 	}
 
 }
