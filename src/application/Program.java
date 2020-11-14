@@ -85,7 +85,13 @@ public class Program {
 		sellerDao.update(seller);
 		System.out.println("UPDATE COM SUCESSO: ");
 		System.out.println(seller);
+		
+		System.out.println("\n === TESTANDO 5 SELLER DELETER ===");
+		
+		System.out.println(sellerDao.findById(16));
+		sellerDao.deleteById(16);
+		System.out.println(sellerDao.findById(16));
 	
-	}
+ 	}
 
 }

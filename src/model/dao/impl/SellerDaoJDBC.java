@@ -94,8 +94,22 @@ public class SellerDaoJDBC implements SellerDao {
 	//deletar o registro pelo id
 	@Override
 	public void deleteById(Integer id) {
+		PreparedStatement st = null;
+		//ResultSet rs = null;
 		
-		
+		try {
+			st = conn.prepareStatement("delete from seller "
+					+ "where id=? ",
+					+ Statement.RETURN_GENERATED_KEYS);
+			st.setInt(1, id);
+			
+			st.executeUpdate();
+			
+		}catch(SQLException ex){
+			throw new DbException(ex.getMessage());
+		}finally {
+			DB.closeStatment(st);
+		}
 	}
 	//localiza o vendedor pelo id
 	@Override
