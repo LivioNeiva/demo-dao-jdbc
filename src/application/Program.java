@@ -49,7 +49,7 @@ public class Program {
 		}
 		*/
 		
-		Departamento d = new Departamento(12,null);
+		Departamento d = new Departamento(9,null);
 		/*
 		System.out.println("\n === TESTANDO 4 SELLER INSERT ===");
 		Seller seller3 = new Seller();
@@ -64,10 +64,28 @@ public class Program {
 		*/
 		
 		//outro modelo de instanciar obj para inserir as informações
-		
+		/*
 		Seller newSeller = new Seller(null,"Rodolfo maia", "maia@ig.com.br", new Date(), 8000.0, d );
 		sellerDao.insert(newSeller);
 		System.out.println("NOVO ID INSERIDO: "+newSeller.getId());
+		*/
+		
+		System.out.println("\n === TESTANDO 5 SELLER UPDATE ===");
+		
+		Seller newSeller2  = new Seller(12, "Francisco Antonio", "antonio@bala.com.br", new Date(), 1000.0, d );
+		
+		sellerDao.update(newSeller2);
+		System.out.println("ID modificado: "+newSeller2.getId());
+		
+		//Exemplo 2
+		System.out.println(seller);
+		seller = sellerDao.findById(9);
+		System.out.println(seller);
+		seller.setEmail("RCaio@uol.com.br");
+		sellerDao.update(seller);
+		System.out.println("UPDATE COM SUCESSO: ");
+		System.out.println(seller);
+	
 	}
 
 }
