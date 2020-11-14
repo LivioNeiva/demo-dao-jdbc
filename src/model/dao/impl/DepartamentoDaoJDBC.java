@@ -50,9 +50,6 @@ public class DepartamentoDaoJDBC implements DepartmentDao{
 		}finally {
 			DB.closeStatment(st);
 		}
-		
-		
-		
 	}
 
 	@Override
@@ -79,7 +76,22 @@ public class DepartamentoDaoJDBC implements DepartmentDao{
 
 	@Override
 	public void DeleteById(Integer id) {
-		// TODO Auto-generated method stub
+		
+		PreparedStatement st = null;
+		
+		try {
+			st = conn.prepareStatement("delete from department "
+			+ "where id = ? ");
+			st.setInt(1, id);
+			
+			int numLinhas = st.executeUpdate();
+			
+		}catch(SQLException ex) {
+			throw new DbException(ex.getMessage());
+		}finally {
+			DB.closeStatment(st);
+		}
+		
 		
 	}
 

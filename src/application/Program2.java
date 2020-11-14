@@ -17,12 +17,19 @@ public class Program2 {
 		depDao.insert(dep);
 		System.out.println("ID NOVO OBJ INSERIDO: "+dep.getId());
 		*/
-		System.out.println("\n === TESTANDO 2 SELLER UPATE ===");
+		System.out.println("\n === TESTANDO 2 DEPARTAMENTO UPATE ===");
 		
 		Departamento dep2 = new Departamento(13, "Cozinha");
 		
 		depDao.update(dep2);
 		System.out.println("\n === UPATE FEITO COM SUCESSO ===");
+		
+		System.out.println("\n === TESTANDO 3 DEPARTAMENTO DELETE ===");
+		
+		depDao.DeleteById(16);
+		System.out.println("\n === UPATE FEITO COM SUCESSO ===");
+		
+		
 	}
 
 }
