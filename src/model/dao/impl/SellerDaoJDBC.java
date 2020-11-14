@@ -53,9 +53,6 @@ public class SellerDaoJDBC implements SellerDao {
 			}else {
 				throw new DbException("ERRO INESPERADO || NENHUMA LINHA FOI AFETADA");
 			}
-			
-			
-			
 		}catch(SQLException ex) {
 			throw new DbException(ex.getMessage());
 		}finally {
