@@ -107,6 +107,19 @@ public class SellerDaoJDBC implements SellerDao {
 		}finally {
 			DB.closeStatment(st);
 		}
+		/*
+		 * criaremos uma Exceçao personalizada DbIntegrityException
+		 * trablharemos com ERRO integridade referencial
+		 * integridade referencial  - sao erros acontece ao apagar um registro q seja
+		 * chave estrangeira em outra tabela.
+		 * ex. nao podemos apagar o departamento 2 da tabela departamento, pois a mesma
+		 * é chave estrangeira de dois registro na tabela seller(vendedor)
+		 */
+		/*
+		  No entanto, o MySQL fornece uma maneira mais eficaz chamada de ON DELETE CASCADE ação
+		  referencial para uma chave estrangeira, que permite excluir dados de tabelas filho 
+		  automaticamente quando você exclui os dados da tabela pai.
+		  */	
 	}
 	//localiza o vendedor pelo id
 	@Override
