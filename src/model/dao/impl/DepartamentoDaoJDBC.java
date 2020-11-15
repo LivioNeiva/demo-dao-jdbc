@@ -149,8 +149,30 @@ public class DepartamentoDaoJDBC implements DepartmentDao{
 
 	@Override
 	public List<Departamento> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PreparedStatement st =null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("select * from department order by id ");
+			rs = st.executeQuery();
+			
+			List<Departamento> list = new ArrayList<>();
+			
+			while(rs.next()) {
+				Departamento dep = new Departamento();
+				dep.setId(rs.getInt("Id"));
+				dep.setNome(rs.getString("Name"));
+				list.add(dep);
+			}
+			return list;
+		}catch(SQLException ex) {
+			throw new DbException(ex.getMessage());
+		}finally {
+			DB.closeStatment(st);
+			DB.closeResultSet(rs);
+		}
+		
 	}
 
 }
